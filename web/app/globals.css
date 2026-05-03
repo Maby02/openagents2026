@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  /* slightly warm dark — feels like Linear/Modal, not pure black */
+  --bg: #0a0b0e;
+  --surface-1: #111217;
+  --surface-2: #181a20;
+  --border: #23252c;
+  --border-strong: #2f3139;
+  --text-1: #ececef;
+  --text-2: #a4a8b3;
+  --text-3: #6c7080;
+  --accent: #a3e635;             /* lime-400 — single signal color */
+  --accent-glow: rgba(163, 230, 53, 0.18);
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--text-1);
+}
+
+body {
+  font-feature-settings: "ss01", "cv11", "tnum";
+}
+
+/* Dot grid for the hero band — soft, not loud */
+.bg-dotgrid {
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 22px 22px;
+  background-position: 0 0;
+}
+
+.bg-dotgrid-fade {
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+          mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+}
+
+/* Soft glow under the live pill */
+.live-glow {
+  box-shadow: 0 0 0 1px rgba(163, 230, 53, 0.35), 0 0 12px 2px var(--accent-glow);
+}
+
+/* Pulse for the live dot */
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+.live-dot {
+  animation: live-pulse 2.4s ease-in-out infinite;
+}
+
+/* New events fade in subtly */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  animation: fade-up 240ms ease-out;
+}
+
+/* Marker line under section headings — editorial */
+.section-rule {
+  background-image: linear-gradient(to right, var(--border-strong), transparent 70%);
+  height: 1px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-3);
+}
+
+/* Selection */
+::selection {
+  background: rgba(163, 230, 53, 0.25);
+  color: #f4ffd6;
+}
