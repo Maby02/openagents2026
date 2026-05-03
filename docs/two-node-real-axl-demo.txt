@@ -1,0 +1,146 @@
+──── 1. init Alice + Bob ────
+Alice peer: a26dd4a363674adf12742caf545604086d0e7a55ca1c0b2ecd9ed9587630f307
+Bob   peer: b2de771a417c51d402e7dac0263c514987a6b5319ed3a26ffc6708ca6ce44f4d
+
+──── 2. start Alice (Listen=tls://127.0.0.1:20400) ────
+
+──── 3. start Bob (Peers=tls://127.0.0.1:20400) ────
+waiting for both AXL nodes to be up...
+both up after 750ms
+
+──── 4. confirm peers see each other in /topology ────
+waiting for AXL handshake...
+Alice sees 1 peer(s), Bob sees 1 peer(s) — handshake done after 500ms
+
+Alice's view of /topology:
+{
+    "our_ipv6": "200:bb24:56b9:3931:6a41:db17:a6a1:5753",
+    "our_public_key": "a26dd4a363674adf12742caf545604086d0e7a55ca1c0b2ecd9ed9587630f307",
+    "peers": [
+        {
+            "uri": "tls://127.0.0.1:59708",
+            "up": true,
+            "inbound": true,
+            "public_key": "b2de771a417c51d402e7dac0263c514987a6b5319ed3a26ffc6708ca6ce44f4d",
+            "root": "",
+            "port": 1,
+            "coords": null
+        }
+    ],
+    "tree": [
+        {
+            "public_key": "a26dd4a363674adf12742caf545604086d0e7a55ca1c0b2ecd9ed9587630f307",
+            "parent": "a26dd4a363674adf12742caf545604086d0e7a55ca1c0b2ecd9ed9587630f307",
+            "sequence": 1
+        }
+    ]
+}
+
+Bob's view of /topology:
+{
+    "our_ipv6": "200:9a43:11cb:7d07:5c57:fa30:4a7f:b387",
+    "our_public_key": "b2de771a417c51d402e7dac0263c514987a6b5319ed3a26ffc6708ca6ce44f4d",
+    "peers": [
+        {
+            "uri": "tls://127.0.0.1:20400",
+            "up": true,
+            "inbound": false,
+            "public_key": "a26dd4a363674adf12742caf545604086d0e7a55ca1c0b2ecd9ed9587630f307",
+            "root": "",
+            "port": 1,
+            "coords": null
+        }
+    ],
+    "tree": [
+        {
+            "public_key": "b2de771a417c51d402e7dac0263c514987a6b5319ed3a26ffc6708ca6ce44f4d",
+            "parent": "b2de771a417c51d402e7dac0263c514987a6b5319ed3a26ffc6708ca6ce44f4d",
+            "sequence": 1
+        }
+    ]
+}
+
+──── 5. Alice shares a strategy onto the mesh ────
+shared llm-headline v0.1.0
+  hash:    91ba70b090ce21449512a79a02fc1283155d7a377bbaf7efe745686f8a715179
+  size:    4438 bytes
+  msgId:   51a410b4f7ae40638c350e82f67c3736559f541184f3a4b32e8e06504e705f465461c0898729d3963cc2d547942cedea601bde7d8b4c2e3a7515a30e45f0ee08
+  result:  published strategy_publish to 1/1 peers (msgId 51a410b4f7ae…)
+
+──── 6. wait for gossip to deliver ────
+
+──── 7. Bob's view of strategies seen on the mesh ────
+
+Strategies on this node's view of the mesh (1)
+------------------------------------------------------------
+  llm-headline v0.1.0 (91ba70b090ce…)
+    by @sibyl-bundled  peer a26dd4a363674adf…
+    first seen 2026-05-03T14:39:39.631Z, 1 occurrence
+
+
+──── 8. Bob's events.jsonl envelope types ────
+(this is the cross-AXL-node proof — strategy_publish landed via gossip)
+   1 "type":"forecast"
+   1 "type":"strategy_publish"
+
+──── done ────
+
+Alice run log: /var/folders/gj/v54n3gzd1mgfb3crj7tkt4240000gn/T/sibyl-alice-cwd-XXXX.dmWlNLcDHn/run.log
+Bob   run log: /var/folders/gj/v54n3gzd1mgfb3crj7tkt4240000gn/T/sibyl-bob-cwd-XXXX.7ET8jeBihK/run.log
+(the trap above will clean these up momentarily)
+
+──── cleanup ────
+── Alice's last run log lines ──
+14:39:38.876 [exec]   mean-reversion v0.1.0 by @sibyl-bundled (ready)
+14:39:38.876 [exec]   simple-momentum v0.1.0 by @sibyl-bundled (ready)
+14:39:38.876 [exec] selected: simple-momentum (a751f0904b13…)
+14:39:38.876 [axl ] starting node on :20100 (tcp :7000) listen=tls://127.0.0.1:20400
+[axl-out] [node] Loaded node config from /var/folders/gj/v54n3gzd1mgfb3crj7tkt4240000gn/T/sibyl-alice-home-XXXX.Qcc6VKlskj/node-config.json
+[axl-out] [node] Max message size: 16777216 bytes
+[axl-out] [node] Max concurrent connections: 128
+[axl-out] [node] Connection read timeout: 1m0s
+[axl-out] [node] Connection idle timeout: 5m0s
+[axl-out] [node] Gensyn Node Started!
+[axl-out] [node] Our IPv6: 200:bb24:56b9:3931:6a41:db17:a6a1:5753
+[axl-out] [node] Our Public Key: a26dd4a363674adf12742caf545604086d0e7a55ca1c0b2ecd9ed9587630f307
+[axl-out] [node] TLS listener started on 127.0.0.1:20400
+[axl-out] Listening on 127.0.0.1:20100
+[axl-out] TCP Listener started on port 7000
+[axl-out] [node] Connected inbound: 200:9a43:11cb:7d07:5c57:fa30:4a7f:b387@127.0.0.1:59708, source 127.0.0.1:20400
+14:39:39.143 [axl ] node up — pubkey a26dd4a363674adf12742caf545604086d0e7a55ca1c0b2ecd9ed9587630f307
+14:39:39.144 [gos:info] topology: 1 peer(s)
+14:39:39.145 [gos ] started — listening for peer messages
+14:39:39.149 [obs ] SSE feed at http://127.0.0.1:20300/events  (history at /events/history, control at /control/publish)
+14:39:39.149 [run ] mode=mock, tick=99999ms, source=mock, peer=a26dd4a36367…
+14:39:39.149 [run ] ticking forecasts. Ctrl-C to stop.
+14:39:39.150 [fcst] [HOLD] simple-momentum → mock://market/mstr-btc-buy "Will MicroStrategy announce a Bitcoin purchase …" Yes@0.50 stake=$0.00 (0ms) because="flat (-0.66%) — no signal"
+14:39:42.655 [gos:info] publish strategy_publish msgId=51a410b4f7ae… → 1/1 peers
+[axl-err] 2026/05/03 20:09:42 Connection from peer b2de771a417c51d4...
+
+── Bob's last run log lines ──
+14:39:38.879 [exec]   simple-momentum v0.1.0 by @sibyl-bundled (ready)
+14:39:38.879 [exec] selected: mean-reversion (1400e2aae9aa…)
+14:39:38.879 [axl ] starting node on :20101 (tcp :7000) peers=1
+[axl-out] [node] Loaded node config from /var/folders/gj/v54n3gzd1mgfb3crj7tkt4240000gn/T/sibyl-bob-home-XXXX.MQtOZvQqHz/node-config.json
+[axl-out] [node] Max message size: 16777216 bytes
+[axl-out] [node] Max concurrent connections: 128
+[axl-out] [node] Connection read timeout: 1m0s
+[axl-out] [node] Connection idle timeout: 5m0s
+[axl-out] [node] Configured peer: tls://127.0.0.1:20400
+[axl-out] [node] Gensyn Node Started!
+[axl-out] [node] Our IPv6: 200:9a43:11cb:7d07:5c57:fa30:4a7f:b387
+[axl-out] [node] Our Public Key: b2de771a417c51d402e7dac0263c514987a6b5319ed3a26ffc6708ca6ce44f4d
+[axl-out] Listening on 127.0.0.1:20101
+[axl-out] TCP Listener started on port 7000
+[axl-out] [node] Connected outbound: 200:bb24:56b9:3931:6a41:db17:a6a1:5753@127.0.0.1:20400, source 127.0.0.1:59708
+14:39:39.146 [axl ] node up — pubkey b2de771a417c51d402e7dac0263c514987a6b5319ed3a26ffc6708ca6ce44f4d
+14:39:39.147 [gos:info] topology: 1 peer(s)
+14:39:39.147 [gos ] started — listening for peer messages
+14:39:39.151 [obs ] SSE feed at http://127.0.0.1:20301/events  (history at /events/history, control at /control/publish)
+14:39:39.151 [run ] mode=mock, tick=99999ms, source=mock, peer=b2de771a417c…
+14:39:39.151 [run ] ticking forecasts. Ctrl-C to stop.
+14:39:39.152 [fcst] [HOLD] mean-reversion → mock://market/mstr-btc-buy "Will MicroStrategy announce a Bitcoin purchase …" Yes@0.50 stake=$0.00 (0ms) because="history too short for mean reversion"
+[axl-err] 2026/05/03 20:09:42 Connection from peer a26dd4a363674adf...
+14:39:42.806 [gos ] received strategy_publish from a26dd4a36367… (sig 51a410b4f7ae…)
+14:39:42.808 [gos:info] recv strategy_publish from a26dd4a36367… → forwarded to 1/1 peers
+
