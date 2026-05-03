@@ -1,0 +1,26 @@
+node_modules/
+dist/
+.env
+.env.local
+
+# Next.js
+.next/
+out/
+next-env.d.ts
+
+# Local-only / personal reference (do not publish)
+.claude/
+PITCH.md
+SUBMISSION.md
+commit-and-push.sh
+
+# Sibyl runtime artifacts
+data/
+*.pem
+*.log
+
+# AXL local build
+axl-src/
+
+# OS
+.DS_Store

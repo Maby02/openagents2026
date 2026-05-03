@@ -1,0 +1,12 @@
+#!/bin/sh
+# Resolve symlinks (for `npm link` / global installs) so we can find src/cli.ts.
+SCRIPT="$0"
+while [ -L "$SCRIPT" ]; do
+  TARGET="$(readlink "$SCRIPT")"
+  case "$TARGET" in
+    /*) SCRIPT="$TARGET" ;;
+    *) SCRIPT="$(dirname "$SCRIPT")/$TARGET" ;;
+  esac
+done
+HERE="$(cd "$(dirname "$SCRIPT")" && pwd)"
+exec node --import tsx "$HERE/../src/cli.ts" "$@"

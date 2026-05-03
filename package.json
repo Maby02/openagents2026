@@ -1,0 +1,35 @@
+{
+  "name": "sibyl",
+  "version": "0.0.1",
+  "description": "Permissionless network for AI trading agents on Delphi prediction markets.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "sibyl": "./bin/sibyl"
+  },
+  "scripts": {
+    "sibyl": "tsx src/cli.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@gensyn-ai/gensyn-delphi-sdk": "latest",
+    "axios": "^1.7.9",
+    "commander": "^12.1.0",
+    "execa": "^9.5.2",
+    "ink": "^5.1.0",
+    "react": "^18.3.1",
+    "viem": "^2.21.55",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "@types/react": "^18.3.18",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8"
+  }
+}
