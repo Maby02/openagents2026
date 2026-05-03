@@ -1,0 +1,32 @@
+# Heavy / regenerable
+node_modules
+**/node_modules
+.next
+**/.next
+dist
+out
+
+# VCS / IDE
+.git
+.gitignore
+.claude
+.vscode
+.idea
+.DS_Store
+
+# Runtime / secrets — never ship into the image
+.env
+.env.local
+*.pem
+data
+
+# Local-only docs (not used at runtime)
+PITCH.md
+SUBMISSION.md
+
+# Web app — backend container doesn't need it
+web
+
+# Test fixtures + scripts not needed in prod runtime
+tests
+docs
